@@ -1,0 +1,7 @@
+.modal-admin {
+    /* new custom width */
+    width: 20% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1500px !important;
+}

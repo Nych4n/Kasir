@@ -13,8 +13,20 @@ class Produk extends Model
     protected $primaryKey   = 'produk_id';
 
     protected $fillable = [
+        'Kode_produk',
         'Namaproduk',
         'Harga',
         'Stok',
     ];
+
+    public function pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class, 'Pelanggan_id', 'id');
+    }
+
+    public function Detail()
+    {
+        return $this->hasMany(DetailPenjualan::class);
+    }
+
 }

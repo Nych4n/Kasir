@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->Namaproduk }}</td>
-                        <td>{{ $item->Harga }}</td>
+                        <td>RP.{{ number_format($item->Harga ) }}</td>
                         <td>{{ $item->Stok }}</td>
                         <td>
                             <form action="{{ route('produk.destroy', $item->produk_id) }}" method="POST" onsubmit="return confirm('Apakah Anda Yakin?');">

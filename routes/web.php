@@ -32,3 +32,6 @@ Route::get('penjualan', [PenjualanController::class, 'index'])->name('index');
 // Route::get('/add', [PenjualanController::class, 'add'])->name('add');
 Route::get('/penjualan/transaksi/{id}', [PenjualanController::class, 'transaksi'])->name('penjualan.transaksi');
 
+
+
+Route::post('/penjualan/tambahkeranjang', [PenjualanController::class, 'tambahkeranjang'])->name('penjualan.tambahkeranjang');

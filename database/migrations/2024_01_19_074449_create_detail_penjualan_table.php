@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('detail_penjualan', function (Blueprint $table) {
             $table->id('detail_id');
-            $table->integer('penjualan_id');
+            $table->integer('kode_penjualan');
             $table->integer('produk_id');
-            $table->integer('JumlahProduk');
-            $table->decimal('Subtotal', 10);
+            $table->integer('jumlah');
+            $table->decimal('subtotal', 10);
             $table->timestamps();
         });
     }

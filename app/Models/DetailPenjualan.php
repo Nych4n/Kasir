@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Produk;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DetailPenjualan extends Model
 {
@@ -12,9 +13,18 @@ class DetailPenjualan extends Model
     protected $primaryKey   = 'detail_id';
 
     protected $fillable = [
-        'penjualan_id',
+        'kode_penjualan',
         'produk_id',
-        'JumlahProduk',
-        'Subtotal',
+        'jumlah',
+        'subtotal',
     ];
+
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class);
+    }
+    public function pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class, 'Pelanggan_id');
+    }
 }

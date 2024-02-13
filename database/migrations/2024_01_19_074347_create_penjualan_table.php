@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id('penjualan_id');
-            $table->date('Tanggalpenjualan')->nullable();
-            $table->decimal('TotalHarga', 10)->nullable();
+            $table->string('kode_penjualan')->nullable();
+            $table->date('tgl_penjualan')->nullable();
+            $table->decimal('TotalHarga', 10.0)->nullable();
             $table->integer('pelanggan_id');
             $table->timestamps();
         });

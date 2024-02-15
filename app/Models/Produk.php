@@ -13,7 +13,7 @@ class Produk extends Model
     protected $primaryKey   = 'produk_id';
 
     protected $fillable = [
-        'Kode_produk',
+        'kode_produk',
         'Namaproduk',
         'Harga',
         'Stok',

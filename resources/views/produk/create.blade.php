@@ -23,6 +23,17 @@
         <form action="{{ route('produk.store') }}" method="POST">
             @csrf
             <div class="mb-3 row">
+                <label  class="col-sm-2 col-form-label">kode produk</label>
+                <div class="col-sm-10">
+                    <input type="text" name="kode_produk" class="form-control  @error('kode_produk') is-invalid @enderror" placeholder="Masukkan kode produk" >
+                    @error('kode_produk')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
+            <div class="mb-3 row">
                 <label  class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-10">
                     <input type="text" name="Namaproduk" class="form-control  @error('name') is-invalid @enderror" placeholder="Masukkan Nama" >

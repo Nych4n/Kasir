@@ -16,6 +16,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>kode produk</th>
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stok</th>
@@ -27,6 +28,7 @@
                     @foreach ($produk as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td>{{ $item->kode_produk }}</td>
                         <td>{{ $item->Namaproduk }}</td>
                         <td>RP.{{ number_format($item->Harga ) }}</td>
                         <td>{{ $item->Stok }}</td>

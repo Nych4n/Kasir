@@ -26,12 +26,13 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('produk', ProdukController::class);
+
 Route::resource('pelanggan', PelangganController::class);
 
+//penjualan atau transaksi
 Route::get('penjualan', [PenjualanController::class, 'index'])->name('index');
-// Route::get('/add', [PenjualanController::class, 'add'])->name('add');
 Route::get('/penjualan/transaksi/{id}', [PenjualanController::class, 'transaksi'])->name('penjualan.transaksi');
-
-
-
 Route::post('/penjualan/tambahkeranjang', [PenjualanController::class, 'tambahkeranjang'])->name('penjualan.tambahkeranjang');
+Route::delete('/hapus/{detailID}/{produkID}', [PenjualanController::class, 'hapus'])->name('hapus');
+
+

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kode_penjualan')->nullable();
             $table->date('tgl_penjualan')->nullable();
             $table->decimal('TotalHarga', 10.0)->nullable();
+            $table->decimal('pembayaran', 10.0)->nullable();
             $table->integer('pelanggan_id');
             $table->timestamps();
         });

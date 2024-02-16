@@ -24,12 +24,26 @@
                         <th>No Nota</th>
                         <th>Nominal</th>
                         <th>Pelanggan</th>
-                        <th>Daftar Produk</th>
                         <th>Aksi</th>
                         {{-- <th>Aksi</th> --}}
                     </tr>
                 </thead>
-                <tbody>     
+                <tbody> 
+                    <?php $no=1; ?> 
+                    @foreach ($data['penjualan'] as $item1)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $item1->kode_penjualan }}</td>
+                        <td>{{ $item1->TotalHarga }}</td>
+                        <td>{{ $item1->nama }}</td>
+                        <td>
+                            <form action="{{ Route('invoice', $item1->kode_penjualan) }}">
+                                <button class="btn btn-warning">Cek</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach 
+            
                 </tbody>
             </table>
         </div>
@@ -48,8 +62,9 @@
         </div>
         <div class="modal-body">
             <div class="row">
+                <a href="/pelanggan/create" class="btn btn-primary mb-3">+ pelanggan</a>
                 <div class="table-responsive text-nowrap">
-                <table class="table table-bordered">
+                <table class="table table-bordered ">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -68,7 +83,7 @@
                             <td>{{ $item->Alamat }}</td>
                             <td>{{ $item->NomorTelepon }}</td>
                             <td>
-                                <a class="btn btn-warning dropdown-item" href="{{ route('penjualan.transaksi', ['id' => $item->Pelanggan_id]) }}" 
+                                <a class="btn btn-warning dropdown-item" href="{{ route('penjualan.transaksi', ['pelanggan_id' => $item->Pelanggan_id]) }}" 
                                 ><i class="bx bx-edit-alt me-1"></i> Pilih</a>
                             </td>
                         </tr>                        
@@ -79,10 +94,6 @@
             </div>
            
         </div>
-        {{-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        </div> --}}
     </div>
     </div>
 </div>

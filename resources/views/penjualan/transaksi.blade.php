@@ -4,15 +4,24 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 {{-- Bagian pemilihan produk --}}
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Pilih Produk</h5>
                     <small class="text-muted float-end">(Pilih Yang sesuai)</small>
                     </div>
+                    <input type="hidden" name="pelanggan_id" value="{{ $pelanggan_id }}">
                     <div class="card-body">
-                        <form action="{{ route('penjualan.tambahkeranjang') }}" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default">Nota</label>
+                            <input type="text" class="form-control" name="kode_penjualan"  value="{{ $nota }}" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Nama Pelanggan</label>
+                            <input type="text" class="form-control" name="kode_penjualan" value="{{ $namapelanggan }}" readonly>
+                        </div>
+                        <form action="{{ route('penjualan.tambahkeranjang',  ['pelanggan_id' => $pelanggan_id]) }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">Produk</label>
@@ -32,30 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                {{-- Bagian bayar --}}
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">#</h5>
-                    <small class="text-muted float-end">(Pilih Yang sesuai)</small>
-                    </div>
-                    <div class="card-body">
-                    <form action="">
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default">Nota</label>
-                            <input type="text" class="form-control" name="kode_penjualan"  value="{{ $nota }}" readonly />
-                            <input type="hidden" class="form-control" name="pelanggan_id" value="{{ $namapelanggan }}" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Nama Pelanggan</label>
-                            <input type="text" class="form-control" name="nama" value="{{ is_object($namapelanggan) ? $namapelanggan->nama : $namapelanggan }}" readonly />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Bayar</button>
-                    </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
+            <div class="col-md-8">
                 {{-- Bagian tabel detail penjualan --}}    
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -76,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-o">
-                                <?php $no=1; ?>
+                                <?php $total=0; $no=1; ?>
                                @foreach ($detail as $item)
                                    <tr>
                                         <td>{{ $no++ }}</td>
@@ -93,9 +79,46 @@
                                             </form>                                            
                                         </td>
                                    </tr>
+                                   <?php  $total += $item->jumlah * $item->Harga;  ?>
                                @endforeach
                             </tbody>
                         </table>
+                    </div>
+
+                    {{-- tabel keranjang --}}
+                    <div class="card-body">
+                        <div class="row g-3 align-items-center mb-3">
+                            @if (count($detail) > 0)                            
+                            <div class="col-auto">
+                                <label for="">Total  Harga </label>
+                            </div>
+                            <div class="col-auto">
+                              <input type="text" value="{{number_format($total) }}"  class="form-control" aria-describedby="passwordHelpInline" readonly>
+                            </div>
+                          </div>
+                          @endif
+
+                        <form action="{{ route('bayar', $nota) }}" method="POST">
+                            @csrf 
+                            @if (count($detail) > 0)
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="">Pembayaran</label>
+                                </div>
+                                <div class="col-auto">
+                                <input type="number" name="pembayaran"  class="form-control" aria-describedby="passwordHelpInline" >
+                                </div>
+                            </div>
+                            @endif
+                            <input type="hidden" name="pelanggan_id" value="{{ $pelanggan_id }}">
+                            <input type="hidden" name="kode_penjualan" value="{{ $nota }}">
+                            <input type="hidden" name="TotalHarga" value="{{ $total }}">
+                            <input type="hidden" name="kembalian" id="kembalian" value="" readonly>
+
+                            @if (count($detail) > 0)
+                                <button type="submit" class="btn btn-primary">Bayar</button>
+                            @endif
+                        </form>                        
                     </div>
                 </div>      
             </div>
@@ -103,4 +126,7 @@
     </div>
 </div>
 
+
 @endsection
+
+

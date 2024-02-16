@@ -31,8 +31,10 @@ Route::resource('pelanggan', PelangganController::class);
 
 //penjualan atau transaksi
 Route::get('penjualan', [PenjualanController::class, 'index'])->name('index');
-Route::get('/penjualan/transaksi/{id}', [PenjualanController::class, 'transaksi'])->name('penjualan.transaksi');
-Route::post('/penjualan/tambahkeranjang', [PenjualanController::class, 'tambahkeranjang'])->name('penjualan.tambahkeranjang');
+Route::get('/penjualan/transaksi/{pelanggan_id}', [PenjualanController::class, 'transaksi'])->name('penjualan.transaksi');
+Route::post('/penjualan/tambahkeranjang/{pelanggan_id}', [PenjualanController::class, 'tambahkeranjang'])->name('penjualan.tambahkeranjang');
 Route::delete('/hapus/{detailID}/{produkID}', [PenjualanController::class, 'hapus'])->name('hapus');
-
-
+Route::post('/penjualan/bayar/{nota}', [PenjualanController::class, 'bayar'])->name('bayar');
+Route::get('/penjualan/invoice/{kode_penjualan}',[PenjualanController::class,'invoice'])->name('invoice');
+Route::get('/cetak/{kode_penjualan}',[PenjualanController::class,'cetak'])->name('cetak');
+// /{PelangganID}/tambahkeranjang

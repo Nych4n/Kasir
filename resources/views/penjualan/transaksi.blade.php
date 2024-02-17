@@ -121,8 +121,15 @@
                         </form>                        
                     </div>
                 </div>      
-            </div>
-        </div>
+            </div> 
+            <div class="row mt-5 mb-5">
+                <div class="col-lg-12 margin-tb">
+                    <div class="float-right">
+                        <a href="/penjualan" class="btn btn-primary mb-3 mr-2">< Back</a>
+                    </div>
+                </div>
+            </div>   
+        </div>        
     </div>
 </div>
 

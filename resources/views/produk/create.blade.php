@@ -25,7 +25,7 @@
             <div class="mb-3 row">
                 <label  class="col-sm-2 col-form-label">kode produk</label>
                 <div class="col-sm-10">
-                    <input type="text" name="kode_produk" class="form-control  @error('kode_produk') is-invalid @enderror" placeholder="Masukkan kode produk" >
+                    <input type="text" name="kode_produk" class="form-control  @error('kode_produk') is-invalid @enderror" placeholder="Masukkan kode produk"  value="{{ old('kode_produk', \App\Models\Produk::generateKodeProduk()) }}" readonly>
                     @error('kode_produk')
                         <div class="invalid-feedback">
                             {{ $message }}

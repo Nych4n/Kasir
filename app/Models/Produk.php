@@ -19,6 +19,11 @@ class Produk extends Model
         'Stok',
     ];
 
+    public static function generateKodeProduk()
+    {
+        return 'A' . date('ym') . str_pad(Produk::count() + 1, 3, '0', STR_PAD_LEFT);
+    }
+
     public function pelanggan()
     {
         return $this->belongsTo(Pelanggan::class, 'Pelanggan_id', 'id');

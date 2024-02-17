@@ -6,9 +6,11 @@ use App\Models\Produk;
 use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
-use App\Models\DetailPenjualan;
 use Illuminate\Support\Carbon;
+use App\Models\DetailPenjualan;
+use Elibyy\TCPDF\Facades\TCPDF;
 use Illuminate\Support\Facades\DB;
+
 
 class PenjualanController extends Controller
 {
@@ -23,11 +25,6 @@ class PenjualanController extends Controller
         ->where('a.tgl_penjualan', $tanggal)
         ->orderBy('a.tgl_penjualan', 'DESC')
         ->get();
-
-        // $penjualan = Penjualan::with('pelanggan')
-        // ->where('tgl_penjualan', $tanggal)
-        // ->orderBy('tgl_penjualan', 'DESC')
-        // ->get();
 
         $pelanggan = Pelanggan::orderBy('nama', 'ASC')
         ->get();
@@ -137,6 +134,7 @@ class PenjualanController extends Controller
         return redirect()->route('invoice',['kode_penjualan' => $request->kode_penjualan])->with('succes','transaksi berhasil');
     }
 
+
     public function invoice($kode_penjualan)
     {
         date_default_timezone_set("Asia/Jakarta");
@@ -165,13 +163,47 @@ class PenjualanController extends Controller
             'pembayaran' => $pembayaran
 
         ];
-        return view('penjualan.invoice', $data);
+
+        $pdf = new TCPDF();
+        $pdf::SetTitle('Invoice');
+        $pdf::AddPage();
+        $pdf::writeHTML(view('penjualan.invoice', $data)->render(), true, false, true, false, '');
+
+        // Set nama file dan tampilkan file PDF
+        $fileName = 'laporan_invoice.pdf';
+        return $pdf::Output($fileName, 'I');
     }
 
-    public function cetak($kode_penjualan)
-    {
+    // public function cetak($kode_penjualan)
+    // {
+    //     date_default_timezone_set("Asia/Jakarta");
+    //     $tanggal = Carbon::now()->format('y-m-d');
 
-    }
+    //     $penjualan = DB::table('penjualan as a')
+    //         ->select('a.*', 'b.*') 
+    //         ->leftJoin('pelanggan as b', 'a.pelanggan_id', '=', 'b.pelanggan_id')
+    //         ->where('a.kode_penjualan', $kode_penjualan)
+    //         ->orderBy('a.tgl_penjualan', 'DESC')
+    //         ->get();
+
+    //     $detail = DB::table('detail_penjualan as a')
+    //         ->leftJoin('produk as b', 'a.produk_id', '=', 'b.produk_id')
+    //         ->where('a.kode_penjualan', $kode_penjualan)
+    //         ->get();
+
+    //     $pembayaran = session('pembayaran');
+    //     // dd(session('pembayaran'));
+
+        
+    //     $data = [
+    //         'nota'      => $kode_penjualan,
+    //         'penjualan' => $penjualan,
+    //         'detail'    => $detail,
+    //         'pembayaran' => $pembayaran
+
+    //     ];
+    //     return view('penjualan.cetak', $data);
+    // }
 }
 
 

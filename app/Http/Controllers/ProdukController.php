@@ -28,7 +28,7 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $produk = Produk::create([          
-            'kode_produk' => $request->kode_produk,
+            'kode_produk' => Produk::generateKodeProduk(),
             'Namaproduk' => $request->Namaproduk,
             'Harga' => $request->Harga,
             'Stok' => $request->Stok

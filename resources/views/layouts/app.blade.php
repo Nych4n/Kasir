@@ -77,6 +77,15 @@
                 <i class="fas fa-fw fa-shopping-cart"></i>
                 <span>Penjualan</span></a>
         </li>
+
+        @if(auth()->check() && auth()->user()->level === 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="/pengguna">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Pengguna</span></a>
+            </li>
+        @endif
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

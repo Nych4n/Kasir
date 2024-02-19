@@ -26,12 +26,6 @@ return new class extends Migration
             [ 'kode_produk' => 'A0003', 'Namaproduk' => 'Gula 1kg'      , 'Harga' => '17000' , 'Stok' => 10 ],
             [ 'kode_produk' => 'A0004', 'Namaproduk' => 'Hilo Coklat'   , 'Harga' => '16000' , 'Stok' => 15 ],
         ]);
-        // DB::table('produk')->insert(array(
-        //     'kode_produk' => 'A0983',
-        //     'Namaproduk' => 'Minyak Kita',
-        //     'Harga' => "15000",
-        //     'Stok' => 25
-        // ));
     }
 
     /**

@@ -23,12 +23,17 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->insert(array(
-            'name' => 'Devina Urohmani',
-            'email' => "devina@gmail.com",
-            'password' => bcrypt('admin123'),
-            'level' => 'admin'
-        ));
+        DB::table('users')->insert([
+            [ 'name' => 'Admin', 'email' => 'admin@gmail.com' , 'password' =>  bcrypt('admin123') , 'level' => 'admin' ],
+            [ 'name' => 'User', 'email' => 'user@gmail.com'        , 'password' =>  bcrypt('admin123') , 'level' => 'user' ],
+        ]);
+
+        // DB::table('users')->insert(array(
+        //     'name' => 'Devina Urohmani',
+        //     'email' => "devina@gmail.com",
+        //     'password' => bcrypt('admin123'),
+        //     'level' => 'admin'
+        // ));
     }
 
     /**

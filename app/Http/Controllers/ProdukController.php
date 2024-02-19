@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class ProdukController extends Controller
 {
@@ -36,10 +35,10 @@ class ProdukController extends Controller
         
         if ($produk) {
             //redirect dengan pesan sukses
-            return redirect()->route('produk.index')->with(['Success' => 'Data Berhasil Di Simpan!!']);
+            return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Di Simpan!!']);
         }else{
             //redirect dengan pesan eror
-            return redirect()->route('produk.index')->with(['Error' => 'Data Gagal Di Simpan !!']);
+            return redirect()->route('produk.index')->with(['error' => 'Data Gagal Di Simpan !!']);
         }
     }
     
@@ -71,10 +70,10 @@ class ProdukController extends Controller
          
         if ($produk) {
             //redirect dengan pesan sukses
-            return redirect()->route('produk.index')->with(['Success' => 'Data Berhasil Di Update!!']);
+            return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Di Update!!']);
         }else{
             //redirect dengan pesan eror
-            return redirect()->route('produk.index')->with(['Error' => 'Data Gagal Di Update !!']);
+            return redirect()->route('produk.index')->with(['error' => 'Data Gagal Di Update !!']);
         }
         
     }
@@ -85,10 +84,10 @@ class ProdukController extends Controller
         $produk->delete();
         if ($produk) {
             //redirect dengan pesan sukses
-            return redirect()->route('produk.index')->with(['Success' => 'Data Berhasil Di Hapus!!']);
+            return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Di Hapus!!']);
         }else{
             //redirect dengan pesan eror
-            return redirect()->route('produk.index')->with(['Error' => 'Data Gagal Di Hapus !!']);
+            return redirect()->route('produk.index')->with(['error' => 'Data Gagal Di Hapus !!']);
         }
     }
 }

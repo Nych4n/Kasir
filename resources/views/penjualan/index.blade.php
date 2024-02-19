@@ -83,7 +83,7 @@
                             <td>{{ $item->Alamat }}</td>
                             <td>{{ $item->NomorTelepon }}</td>
                             <td>
-                                <a class="btn btn-warning dropdown-item" href="{{ route('penjualan.transaksi', ['pelanggan_id' => $item->Pelanggan_id]) }}" 
+                                <a class="btn btn-warning btn-sm" href="{{ route('penjualan.transaksi', ['pelanggan_id' => $item->Pelanggan_id]) }}" 
                                 ><i class="bx bx-edit-alt me-1"></i> Pilih</a>
                             </td>
                         </tr>                        

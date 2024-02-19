@@ -32,12 +32,12 @@
                         <td>{{ $item->NomorTelepon }}</td>
                         <td>
                             <form action="{{ route('pelanggan.destroy', $item->Pelanggan_id) }}" method="POST" onsubmit="return confirm('Apakah Anda Yakin?');">
-                                <a class="btn btn-success dropdown-item" href="{{ route('pelanggan.edit', $item->Pelanggan_id) }}" 
+                                <a class="btn btn-warning " href="{{ route('pelanggan.edit', $item->Pelanggan_id) }}" 
                                 ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                 >
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger dropdown-item" type="submit"
+                                <button class="btn btn-danger " type="submit"
                                 ><i class="bx bx-trash me-1"></i> Delete</button
                                 >
                             </form>

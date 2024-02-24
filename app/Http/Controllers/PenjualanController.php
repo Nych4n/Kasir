@@ -16,14 +16,14 @@ class PenjualanController extends Controller
 {
     public function index()
     {
-        date_default_timezone_set("Asia/Jakarta");
-        $tanggal = Carbon::now()->format('y-m-d');
+        // date_default_timezone_set("Asia/Jakarta");
+        // $tanggal = Carbon::now()->format('y-m-d');
 
         $penjualan = DB::table('penjualan as a')
         ->select('a.*', 'b.*') 
         ->leftJoin('pelanggan as b', 'a.pelanggan_id', '=', 'b.pelanggan_id')
-        ->where('a.tgl_penjualan', $tanggal)
-        ->orderBy('a.tgl_penjualan', 'DESC')
+        // ->where('a.tgl_penjualan', $tanggal)
+        // ->orderBy('a.tgl_penjualan', 'DESC')
         ->get();
 
         $pelanggan = Pelanggan::orderBy('nama', 'ASC')

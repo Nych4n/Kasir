@@ -5,14 +5,11 @@
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Penjualan</h6>
         <div class="dropdown no-arrow">
-            {{-- <a class="btn btn-primary" href="/add" role="button">
-               Tambah Penjualan
-            </a> --}}
-            <!-- Button trigger modal -->
+            <!-- Button  modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Tambah Penjualan
             </button>
-            
+                
         </div>
     </div>
     <div class="card-body">

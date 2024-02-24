@@ -83,7 +83,7 @@
                             <img src="{{ asset('img/bunga.png')  }}" class="center-block" style="height: 72px;">
 
                             <div class="nav-item">
-                                <a class="nav-link" href="http://localhost:8000/register">Register</a>
+                                {{-- <a class="nav-link" href="http://localhost:8000/register">Register</a> --}}
                             </div>
                             <hr>
                             <p style="text-align:center"> © 2024 All Rights Reserved. </p>

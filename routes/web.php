@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PenggunaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
@@ -28,9 +29,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/pengguna',function(){
-        return view('/pengguna/index');
-    });
+    // Route::get('/pengguna',function(){
+    //     return view('/pengguna/index');
+    // });
+    Route::get('pengguna',[PenggunaController::class,'index'])->name('index');
+    Route::post('pengguna/addproses',[PenggunaController::class,'addproses'])->name('addproses');
+    Route::delete('/delete/{id}',[PenggunaController::class,'delete'])->name('delete');
 });
 
 
